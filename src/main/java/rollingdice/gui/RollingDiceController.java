@@ -74,6 +74,7 @@ public class RollingDiceController {
     }
 
     private void initializeGrid() {
+        Logger.debug("Initializing board");
         for (var i = 0; i < board.getRowCount(); i++) {
             for (var j = 0; j < board.getColumnCount(); j++) {
                 var square = createSquare(i, j);
@@ -96,6 +97,7 @@ public class RollingDiceController {
     }
 
     private void initializeSideViews() {
+        Logger.debug("Initializing side views");
         createTopSideView();
 
         sideViews = new EnumMap<>(Dice.Side.class);
@@ -115,6 +117,7 @@ public class RollingDiceController {
     }
 
     private void setupClickListeners() {
+        Logger.debug("Setting up click listeners");
         for (var sideView : List.of(northSideView, eastSideView, southSideView, westSideView)) {
             sideView.setOnMouseClicked(this::handleMouseClick);
         }
@@ -122,6 +125,7 @@ public class RollingDiceController {
 
     private void setupAccelerators() {
         Platform.runLater(() -> {
+            Logger.debug("Setting up accelerators");
             var scene = board.getScene();
             if (scene != null) {
                 scene.getAccelerators().put(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN), this::resetGame);
@@ -135,6 +139,7 @@ public class RollingDiceController {
     }
 
     private void resetGame() {
+        Logger.debug("Resetting game");
         state = new RollingDiceState();
         if (topSideView.getParent() != null) {
             getSquare(state.getDicePosition()).getChildren().remove(topSideView);
@@ -144,6 +149,7 @@ public class RollingDiceController {
     }
 
     private void updateSideViews() {
+        Logger.debug("Updating side views");
         sideViews.forEach((side, imageView) -> {
             var diceValue = state.getDiceValue(side);
             diceImageStorage.get(diceValue)
@@ -152,6 +158,7 @@ public class RollingDiceController {
     }
 
     private void placeDiceOnBoard() {
+        Logger.debug("Placing dice on board");
         getSquare(state.getDicePosition()).getChildren().add(topSideView);
     }
 
@@ -159,7 +166,7 @@ public class RollingDiceController {
         var imageView = (ImageView) mouseEvent.getSource();
         var side = getSideForImageView(imageView);
         var direction = Direction.valueOf(side.name());
-        Logger.debug("Direction chosen: {}", direction);
+        Logger.debug("Click on {} side", direction);
         processMove(direction);
     }
 
@@ -172,6 +179,7 @@ public class RollingDiceController {
     }
 
     private void processMove(Direction direction) {
+        Logger.info("Rolling dice to {}", direction);
         if (state.isLegalMove(direction)) {
             var oldPos = state.getDicePosition();
             state.makeMove(direction);
@@ -179,14 +187,16 @@ public class RollingDiceController {
             moveDice(oldPos, newPos);
             updateSideViews();
             if (state.isSolved()) {
+                Logger.info("Puzzle has been solved");
                 showSolvedAndExit();
             }
         } else {
-            Logger.debug("Invalid move");
+            Logger.warn("Invalid move");
         }
     }
 
     private void moveDice(Position oldPos, Position newPos) {
+        Logger.debug("Moving dice from {} to {}", oldPos, newPos);
         getSquare(oldPos).getChildren().remove(topSideView);
         getSquare(newPos).getChildren().add(topSideView);
     }
