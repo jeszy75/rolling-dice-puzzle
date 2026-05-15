@@ -60,6 +60,10 @@ public class Dice implements Copyable<Dice> {
     /**
      * Creates a {@code Dice} object with the numbers given on the top, north,
      * and west sides, respectively.
+     *
+     * @param top the number on the top side
+     * @param north the number on the north side
+     * @param west  the number on the west side
      */
     public Dice(int top, int north, int west) {
         checkSides(top, north, west);
