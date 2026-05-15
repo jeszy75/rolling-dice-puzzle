@@ -7,9 +7,24 @@ import common.util.board.RelativeDirection;
  */
 public enum Direction implements RelativeDirection {
 
+    /**
+     * Represents the north direction.
+     */
     NORTH(-1, 0),
+
+    /**
+     * Represents the east direction.
+     */
     EAST(0, 1),
+
+    /**
+     * Represents the south direction.
+     */
     SOUTH(1, 0),
+
+    /**
+     * Represents the west direction.
+     */
     WEST(0, -1);
 
     private final int rowChange;

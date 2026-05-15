@@ -13,11 +13,35 @@ public class Dice implements Copyable<Dice> {
      * Represents the sides of a dice.
      */
     public enum Side {
+
+        /**
+         * Represents the top side of the dice.
+         */
         TOP,
+
+        /**
+         * Represents the north side of the dice.
+         */
         NORTH,
+
+        /**
+         * Represents the east side of the dice.
+         */
         EAST,
+
+        /**
+         * Represents the west side of the dice.
+         */
         WEST,
+
+        /**
+         * Represents the south side of the dice.
+         */
         SOUTH,
+
+        /**
+         * Represents the bottom side of the dice.
+         */
         BOTTOM
     }
 
