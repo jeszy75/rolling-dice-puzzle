@@ -24,7 +24,7 @@
         <jacoco.version>0.8.14</jacoco.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
         <maven.surefire.version>3.5.5</maven.surefire.version>
-        <exec.mainClass><!-- TODO --></exec.mainClass>
+        <exec.mainClass>rollingdice.gui.Main</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
