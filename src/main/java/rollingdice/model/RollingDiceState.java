@@ -98,7 +98,7 @@ public class RollingDiceState implements State<Direction, RollingDiceState> {
      */
     @Override
     public boolean isLegalMove(Direction direction) {
-        var newDicePosition = dicePosition.move(direction);
+        var newDicePosition = dicePosition.movedTowards(direction);
         return isOnBoard(newDicePosition)
                 && (getBoardValue(newDicePosition) == dice.getValue(Dice.Side.TOP) || getBoardValue(newDicePosition) == 0);
     }
@@ -111,7 +111,7 @@ public class RollingDiceState implements State<Direction, RollingDiceState> {
     @Override
     public void makeMove(Direction direction) {
         dice.roll(direction);
-        dicePosition = dicePosition.move(direction);
+        dicePosition = dicePosition.movedTowards(direction);
     }
 
     @Override

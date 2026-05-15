@@ -14,7 +14,7 @@ public record Position(int row, int col) {
      *
      * @param direction the direction to move towards
      */
-    public Position move(Direction direction) {
+    public Position movedTowards(Direction direction) {
         return new Position(row + direction.getRowChange(), col + direction.getColChange());
     }
 

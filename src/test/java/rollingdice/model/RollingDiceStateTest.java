@@ -55,7 +55,7 @@ class RollingDiceStateTest {
     void makeMove_state1_east() {
         var dice = state1.getDice();
         dice.roll(Direction.EAST);
-        var dicePosition = state1.getDicePosition().move(Direction.EAST);
+        var dicePosition = state1.getDicePosition().movedTowards(Direction.EAST);
         state1.makeMove(Direction.EAST);
         assertEquals(dice, state1.getDice());
         assertEquals(dicePosition, state1.getDicePosition());
@@ -65,7 +65,7 @@ class RollingDiceStateTest {
     void makeMove_state3_south() {
         var dice = state3.getDice();
         dice.roll(Direction.SOUTH);
-        var dicePosition = state3.getDicePosition().move(Direction.SOUTH);
+        var dicePosition = state3.getDicePosition().movedTowards(Direction.SOUTH);
         state3.makeMove(Direction.SOUTH);
         assertEquals(dice, state3.getDice());
         assertEquals(dicePosition, state3.getDicePosition());
