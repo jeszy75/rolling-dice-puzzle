@@ -146,6 +146,11 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+                <configuration>
+                    <links>
+                        <link>https://inbpm0420l.github.io/homework-project-utils-2026/javadoc/</link>
+                    </links>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
