@@ -1,8 +1,11 @@
 package rollingdice.gui;
 
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -43,6 +46,9 @@ public class RollingDiceController {
 
     private Map<Dice.Side, ImageView> sideViews;
 
+    @FXML
+    private TextField numberOfMovesField;
+
     private final ImageStorage<Integer> boardImageStorage = new OrdinalImageStorage(Dice.class,
             null,
             "dieWhite1.png",
@@ -65,10 +71,13 @@ public class RollingDiceController {
 
     private RollingDiceState state;
 
+    private final IntegerProperty numberOfMoves = new SimpleIntegerProperty();
+
     @FXML
     private void initialize() {
         initializeGrid();
         initializeSideViews();
+        initializeNumberOfMoves();
         setupAccelerators();
         resetGame();
     }
@@ -123,6 +132,10 @@ public class RollingDiceController {
         }
     }
 
+    private void initializeNumberOfMoves() {
+        numberOfMovesField.textProperty().bind(numberOfMoves.asString());
+    }
+
     private void setupAccelerators() {
         Platform.runLater(() -> {
             Logger.debug("Setting up accelerators");
@@ -146,6 +159,7 @@ public class RollingDiceController {
         }
         updateSideViews();
         placeDiceOnBoard();
+        numberOfMoves.set(0);
     }
 
     private void updateSideViews() {
@@ -186,6 +200,7 @@ public class RollingDiceController {
             var newPos = state.getDicePosition();
             moveDice(oldPos, newPos);
             updateSideViews();
+            numberOfMoves.set(numberOfMoves.get() + 1);
             if (state.isSolved()) {
                 Logger.info("Puzzle has been solved");
                 showSolvedAndExit();
