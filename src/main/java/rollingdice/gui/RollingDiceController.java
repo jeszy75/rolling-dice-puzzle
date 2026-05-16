@@ -194,20 +194,23 @@ public class RollingDiceController {
 
     private void processMove(Direction direction) {
         Logger.info("Rolling dice to {}", direction);
-        if (state.isLegalMove(direction)) {
-            var oldPos = state.getDicePosition();
-            state.makeMove(direction);
-            var newPos = state.getDicePosition();
-            moveDice(oldPos, newPos);
-            updateSideViews();
-            numberOfMoves.set(numberOfMoves.get() + 1);
-            if (state.isSolved()) {
-                Logger.info("Puzzle has been solved");
-                showSolvedAndExit();
-            }
-        } else {
+        if (!state.isLegalMove(direction)) {
             Logger.warn("Invalid move");
+            return;
         }
+        makeMoveAndUpdateUI(direction);
+        if (state.isSolved()) {
+            Logger.info("Puzzle has been solved");
+            showSolvedAndExit();
+        }
+    }
+
+    private void makeMoveAndUpdateUI(Direction direction) {
+        var oldPos = state.getDicePosition();
+        state.makeMove(direction);
+        moveDice(oldPos, state.getDicePosition());
+        updateSideViews();
+        numberOfMoves.set(numberOfMoves.get() + 1);
     }
 
     private void moveDice(Position oldPos, Position newPos) {
