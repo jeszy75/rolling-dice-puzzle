@@ -85,6 +85,9 @@ public class RollingDiceState implements State<Direction, RollingDiceState> {
         return dicePosition;
     }
 
+    /**
+     * {@return whether the puzzle is solved}
+     */
     @Override
     public boolean isSolved() {
         return dicePosition.row() == ROWS - 1 && dicePosition.col() == COLS - 1;
@@ -114,6 +117,9 @@ public class RollingDiceState implements State<Direction, RollingDiceState> {
         dicePosition = dicePosition.movedTowards(direction);
     }
 
+    /**
+     * {@return the set of all moves that can be applied to the state}
+     */
     @Override
     public Set<Direction> getLegalMoves() {
         return Arrays.stream(Direction.values())
@@ -162,6 +168,9 @@ public class RollingDiceState implements State<Direction, RollingDiceState> {
         return Objects.hash(dice, dicePosition);
     }
 
+    /**
+     * {@return a deep copy of this object}
+     */
     @Override
     public RollingDiceState copy() {
         return new RollingDiceState(dice, dicePosition);
