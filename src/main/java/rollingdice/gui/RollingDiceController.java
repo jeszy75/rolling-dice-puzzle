@@ -51,12 +51,12 @@ public class RollingDiceController {
 
     private final ImageStorage<Integer> boardImageStorage = new OrdinalImageStorage(Dice.class,
             null,
-            "dieWhite1.png",
-            "dieWhite2.png",
-            "dieWhite3.png",
-            "dieWhite4.png",
-            "dieWhite5.png",
-            "dieWhite6.png"
+            "dieWhite_border1.png",
+            "dieWhite_border2.png",
+            "dieWhite_border3.png",
+            "dieWhite_border4.png",
+            "dieWhite_border5.png",
+            "dieWhite_border6.png"
     );
 
     private final ImageStorage<Integer> diceImageStorage = new OrdinalImageStorage(Dice.class,
