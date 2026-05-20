@@ -157,7 +157,7 @@ public class Dice implements Copyable<Dice> {
     }
 
     @Override
-    public Dice copy () {
+    public Dice copy() {
         return new Dice(top, north, west);
     }
 
