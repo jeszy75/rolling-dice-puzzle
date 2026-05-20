@@ -64,6 +64,18 @@ class DiceTest {
     }
 
     @Test
+    void isDiceValue() {
+        assertTrue(Dice.isDiceValue(1));
+        assertTrue(Dice.isDiceValue(2));
+        assertTrue(Dice.isDiceValue(3));
+        assertTrue(Dice.isDiceValue(4));
+        assertTrue(Dice.isDiceValue(5));
+        assertTrue(Dice.isDiceValue(6));
+        assertFalse(Dice.isDiceValue(0));
+        assertFalse(Dice.isDiceValue(7));
+    }
+
+    @Test
     void copy() {
         var copy = dice.copy();
         assertEquals(dice, copy);
