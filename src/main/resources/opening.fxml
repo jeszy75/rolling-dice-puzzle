@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="40.0" style="-fx-font-size: 18;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollingdice.gui.OpeningController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 250%; -fx-font-weight: bold;" text="Rolling Dice Puzzle" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <ImageView fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@red_dices.png" />
+         </image></ImageView>
+      <Label text="The goal of the puzzle is to get the dice to the bottom right square. In a move, the dice can be rolled to a neighboring square if the number on the top side of the dice equals the number of the target square, with the following exception: the dice can always be rolled to an empty square, no matter which number is on the top side." textAlignment="CENTER" wrapText="true" />
+      <VBox alignment="CENTER" focusTraversable="true" spacing="10.0">
+         <children>
+            <Label labelFor="${playerNameField}" text="Your name:" />
+            <TextField fx:id="playerNameField" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="20" promptText="Enter your name" />
+         </children>
+      </VBox>
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStart" style="-fx-background-color: #E63946; -fx-background-radius: 10; -fx-text-fill: white; -fx-font-size: 150%; -fx-font-weight: bold; -fx-cursor: hand;" text="Start">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
