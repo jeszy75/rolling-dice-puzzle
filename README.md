@@ -91,3 +91,5 @@ Image Credits
 -------------
 
 Dice face images are courtesy of [Kenney Vleugels](https://kenney.nl/), under [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
+
+The image of the two red dice is from [Openclipart](https://openclipart.org/) under [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
