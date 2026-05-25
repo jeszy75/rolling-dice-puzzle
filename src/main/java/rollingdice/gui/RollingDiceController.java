@@ -1,10 +1,14 @@
 package rollingdice.gui;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -71,7 +75,16 @@ public class RollingDiceController {
 
     private RollingDiceState state;
 
+    @FXML
+    private Label numberOfMovesLabel;
+
     private final IntegerProperty numberOfMoves = new SimpleIntegerProperty();
+
+    private final StringProperty playerName =  new SimpleStringProperty();
+
+    public void setPlayerName(String playerName) {
+        this.playerName.set(playerName);
+    }
 
     @FXML
     private void initialize() {
@@ -133,6 +146,10 @@ public class RollingDiceController {
     }
 
     private void initializeNumberOfMoves() {
+        Platform.runLater(() -> Logger.debug("Player name: {}", playerName.get()));
+        numberOfMovesLabel.textProperty().bind(Bindings.when(playerName.isNotEmpty())
+                .then(playerName.concat("'s moves:"))
+                .otherwise("Moves:"));
         numberOfMovesField.textProperty().bind(numberOfMoves.asString());
     }
 
